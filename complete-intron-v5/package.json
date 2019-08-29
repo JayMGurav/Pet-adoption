@@ -1,0 +1,23 @@
+{
+  "name": "complete-intron-v5",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4"
+  },
+  "devDependencies": {
+    "eslint": "^6.2.2",
+    "eslint-config-prettier": "^6.1.0",
+    "parcel-bundler": "^1.12.3",
+    "prettier": "^1.18.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint adopt-me/**/*.{js,jsx} --quiet"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
