@@ -15,7 +15,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint adopt-me/**/*.{js,jsx} --quiet"
+    "lint": "eslint adopt_me_src/**/*.{js,jsx} --quiet",
+    "dev": "parcel adopt_me_src/index.html"
   },
   "keywords": [],
   "author": "",
