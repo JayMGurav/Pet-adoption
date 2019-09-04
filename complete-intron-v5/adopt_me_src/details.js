@@ -1,10 +1,52 @@
 import React from "react";
+import pet from "@frontendmasters/pet";
+import Carosol from "./carosol";
+import ErrorBoundry from "./errorBoundry";
+import ThemeContext from "./themeContext";
 
-const Details = props => {
+class Details extends React.Component {
+  state = {
+    loading: true
+  };
+  componentDidMount() {
+    pet.animal(this.props.id).then(({ animal }) =>
+      this.setState({
+        name: animal.name,
+        animal: animal.type,
+        location: `${animal.contact.address.city}, ${animal.contact.address.state}`,
+        description: animal.description,
+        media: animal.photos,
+        breed: animal.breeds.primary,
+        loading: false
+      })
+    );
+  }
+  render() {
+    if (this.state.loading) {
+      return <h1>Loading...</h1>;
+    }
+    const { animal, location, description, media, breed, name } = this.state;
+    return (
+      <div className="details">
+        <Carosol media={media} />
+        <div>
+          <h1>{name}</h1>
+          <h2>{`${animal} - ${breed} - ${location}`}</h2>
+          <ThemeContext.Consumer>
+            {([theme]) => (
+              <button style={{ backgroundColor: theme }}>Adopt {name}</button>
+            )}
+          </ThemeContext.Consumer>
+          <p>{description}</p>
+        </div>
+      </div>
+    );
+  }
+}
+export default function DetailsWithErrorBoundry(props) {
   return (
-    <pre>
-      <code>{JSON.stringify(props, null, 4)}</code>
-    </pre>
+    <ErrorBoundry>
+      <Details {...props} />
+    </ErrorBoundry>
   );
-};
-export default Details;
+}
